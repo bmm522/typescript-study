@@ -1,5 +1,5 @@
 import express from 'express';
-import { TestRoute } from './routes/TestRoute';
+import { InterviewRoute } from './routes/InterViewRoute';
 
 
 //  Express 애플리케이션을 생성하고 미들웨어와 라우팅을 초기화하는 역할을 합니다.
@@ -21,7 +21,7 @@ export class App {
   
     // 라우터 세팅
     private setRouter() {
-        this.app.use(TestRoute.getInstance().router);
+        this.app.use(InterviewRoute.getInstance().router);
     }
     
   }
