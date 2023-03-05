@@ -7,7 +7,14 @@ import { InterviewRouteImpl } from "./routes/InterviewRouteImpl";
 export class DI {
     private static di: DI = new DI();
 
+    private interviewController:InterviewController;
+
+    private interviewRoute: InterviewRoute;
+    
     private constructor(){
+        this.interviewController = new InterviewControllerImpl();
+        this.interviewRoute = new InterviewRouteImpl(this.interviewController);
+
 
     }
 
@@ -16,8 +23,6 @@ export class DI {
     }
     
     getInterviewRouter(): Router{
-        const interviewController: InterviewController = new InterviewControllerImpl();
-        const interviewRoute: InterviewRoute = new InterviewRouteImpl(interviewController);
-        return interviewRoute.router;
+        return this.interviewRoute.router;
     }
 }
