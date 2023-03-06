@@ -5,10 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 const express_1 = __importDefault(require("express"));
-const TestRoute_1 = require("./routes/TestRoute");
+const di_1 = require("./di");
 //  Express 애플리케이션을 생성하고 미들웨어와 라우팅을 초기화하는 역할을 합니다.
 class App {
     constructor() {
+        this.di = di_1.DI.getInstance();
         this.app = (0, express_1.default)();
         this.setMiddlewares();
         this.setRouter();
@@ -20,7 +21,7 @@ class App {
     }
     // 라우터 세팅
     setRouter() {
-        this.app.use(TestRoute_1.TestRoute.getInstance().router);
+        this.app.use(this.di.getInterviewRouter());
     }
 }
 exports.App = App;
